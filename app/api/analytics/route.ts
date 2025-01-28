@@ -1,6 +1,8 @@
 import { supabase } from '@/lib/database/client';
 import { NextResponse } from 'next/server';
 
+export const runtime = 'edge'
+
 export async function GET() {
   const { data, error } = await supabase
     .from('crawl_results')

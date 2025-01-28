@@ -35,6 +35,7 @@ const nextConfig = {
       output: 'standalone',
       experimental: {
         outputFileTracingRoot: undefined,
+        runtime: 'edge',
       },
     }
     

@@ -1,6 +1,8 @@
 import { runPlaywrightCrawler } from '@/lib/crawlers/playwright';
 import { NextResponse } from 'next/server';
 
+export const runtime = 'edge'
+
 export async function POST(request: Request) {
   try {
     const { url } = await request.json();
