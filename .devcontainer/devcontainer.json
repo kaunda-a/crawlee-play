@@ -1,0 +1,15 @@
+{
+  "name": "Playwright Crawler",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "forwardPorts": [3000, 5900, 6080],
+  "postCreateCommand": "Xvfb :99 -screen 0 1280x1024x24 & /start-vnc.sh & npm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-playwright.playwright"
+      ]
+    }
+  }
+}
