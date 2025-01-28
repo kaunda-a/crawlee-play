@@ -1,36 +1,116 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+.
+├── README.md
+├── app
+│   ├── auth
+│   │   ├── signin
+│   │   │   └── page.tsx
+│   │   └── signup
+│   │       └── page.tsx
+│   ├── calendar
+│   │   └── page.tsx
+│   ├── chart
+│   │   └── page.tsx
+│   ├── forms
+│   │   ├── form-elements
+│   │   │   └── page.tsx
+│   │   └── form-layout
+│   │       └── page.tsx
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── profile
+│   │   └── page.tsx
+│   ├── settings
+│   │   └── page.tsx
+│   ├── tables
+│   │   └── page.tsx
+│   └── ui
+│       ├── alerts
+│       │   └── page.tsx
+│       └── buttons
+│           └── page.tsx
+├── components
+│   ├── Breadcrumbs
+│   │   └── Breadcrumb.tsx
+│   ├── Calender
+│   │   └── index.tsx
+│   ├── CardDataStats.tsx
+│   ├── Charts
+│   │   ├── ChartOne.tsx
+│   │   ├── ChartThree.tsx
+│   │   ├── ChartTwo.tsx
+│   │   └── page.tsx
+│   ├── Chat
+│   │   └── ChatCard.tsx
+│   ├── Checkboxes
+│   │   ├── CheckboxFive.tsx
+│   │   ├── CheckboxFour.tsx
+│   │   ├── CheckboxOne.tsx
+│   │   ├── CheckboxThree.tsx
+│   │   └── CheckboxTwo.tsx
+│   ├── ClickOutside.tsx
+│   ├── Dashboard
+│   │   └── Platform.tsx
+│   ├── Dropdowns
+│   │   └── DropdownDefault.tsx
+│   ├── FormElements
+│   │   ├── DatePicker
+│   │   │   ├── DatePickerOne.tsx
+│   │   │   └── DatePickerTwo.tsx
+│   │   ├── MultiSelect.tsx
+│   │   └── index.tsx
+│   ├── Header
+│   │   ├── DarkModeSwitcher.tsx
+│   │   ├── DropdownMessage.tsx
+│   │   ├── DropdownNotification.tsx
+│   │   ├── DropdownUser.tsx
+│   │   └── index.tsx
+│   ├── Layouts
+│   │   └── DefaultLayout.tsx
+│   ├── Maps
+│   │   └── MapOne.tsx
+│   ├── SelectGroup
+│   │   ├── SelectGroupOne.tsx
+│   │   └── SelectGroupTwo.tsx
+│   ├── Sidebar
+│   │   ├── SidebarDropdown.tsx
+│   │   ├── SidebarItem.tsx
+│   │   └── index.tsx
+│   ├── Switchers
+│   │   ├── SwitcherFour.tsx
+│   │   ├── SwitcherOne.tsx
+│   │   ├── SwitcherThree.tsx
+│   │   └── SwitcherTwo.tsx
+│   ├── Tables
+│   │   ├── TableFour.tsx
+│   │   ├── TableOne.tsx
+│   │   ├── TableThree.tsx
+│   │   └── TableTwo.tsx
+│   └── common
+│       └── Loader
+│           └── index.tsx
+├── hooks
+│   ├── useColorMode.tsx
+│   └── useLocalStorage.tsx
+├── jsvectormap.d.ts
+├── next-env.d.ts
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── prettier.config.js
+├── styles
+│   ├── satoshi.css
+│   └── style.css
+├── tailwind.config.ts
+├── tsconfig.json
+└── types
+    ├── Lead.ts
+    ├── brand.ts
+    ├── cards.ts
+    ├── chat.ts
+    ├── country.ts
+    ├── faq.ts
+    ├── faqItem.ts
+    ├── package.ts
+    ├── product.ts
+    └── us-aea-en.js

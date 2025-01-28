@@ -1,5 +1,5 @@
 {
-  "name": "jaguar-app",
+  "name": "crawlee",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,18 +9,42 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@playwright/test": "^1.50.0",
+    "@supabase/supabase-js": "^2.48.1",
+    "apexcharts": "^4.4.0",
+    "axios": "^1.7.9",
+    "bull": "^4.16.5",
+    "cheerio": "^1.0.0",
+    "crawlee": "^3.12.2",
+    "electron": "^34.0.1",
+    "flatpickr": "^4.6.13",
+    "jsvectormap": "^1.6.0",
+    "next": "15.0.3",
+    "playwright": "^1.50.0",
+    "playwright-cluster": "^1.0.7",
+    "playwright-extra": "^4.3.6",
+    "playwright-stealth": "^0.0.1",
+    "proxy-chain": "^2.5.6",
+    "puppeteer-core": "^24.1.1",
     "react": "19.0.0-rc-66855b96-20241106",
+    "react-apexcharts": "^1.7.0",
     "react-dom": "19.0.0-rc-66855b96-20241106",
-    "next": "15.0.3"
+    "ws": "^8.18.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@types/bull": "^3.15.9",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
+    "autoprefixer": "^10.4.20",
     "eslint": "^8",
-    "eslint-config-next": "15.0.3"
+    "eslint-config-next": "^15.0.3",
+    "file-loader": "^6.2.0",
+    "null-loader": "^4.0.1",
+    "postcss": "^8",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.11",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }
