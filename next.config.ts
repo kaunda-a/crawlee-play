@@ -31,7 +31,13 @@ const nextConfig = {
         zlib: false,
       };
     }
-
+    module.exports = {
+      output: 'standalone',
+      experimental: {
+        outputFileTracingRoot: undefined,
+      },
+    }
+    
     // Handle Playwright and Bull as external modules
     config.externals.push({
       'playwright-core': 'playwright-core',
