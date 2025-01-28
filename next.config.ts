@@ -1,6 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack: (config: { resolve: { fallback: any; }; externals: { 'playwright-core': string; playwright: string; bull: string; electron: string; }[]; }, { isServer }: any) => {
+  webpack: (
+    config: {
+      resolve: { fallback: Record<string, boolean | string> };
+      externals: { [key: string]: string }[];
+    },
+    { isServer }: { isServer: boolean }
+  ) => {
     if (!isServer) {
       // Handle Node.js module fallbacks for client-side
       config.resolve.fallback = {
@@ -11,7 +17,7 @@ const nextConfig = {
         child_process: false,
         electron: false,
         'playwright-core': false,
-        'playwright': false,
+        playwright: false,
         bull: false,
         path: false,
         os: false,
@@ -22,24 +28,24 @@ const nextConfig = {
         https: false,
         url: false,
         util: false,
-        zlib: false
+        zlib: false,
       };
     }
 
     // Handle Playwright and Bull as external modules
     config.externals.push({
       'playwright-core': 'playwright-core',
-      'playwright': 'playwright',
-      'bull': 'bull',
-      'electron': 'electron'
+      playwright: 'playwright',
+      bull: 'bull',
+      electron: 'electron',
     });
 
     return config;
   },
   // Other Next.js configurations
   experimental: {
-    serverComponentsExternalPackages: ['playwright-core', 'playwright', 'bull', 'electron']
-  }
+    serverComponentsExternalPackages: ['playwright-core', 'playwright', 'bull', 'electron'],
+  },
 };
 
 export default nextConfig;

@@ -3,6 +3,15 @@ import Link from "next/link";
 import SidebarDropdown from "@/components/Sidebar/SidebarDropdown";
 import { usePathname } from "next/navigation";
 
+
+interface SidebarItemProps {
+  icon: React.ReactNode;
+  label: string;
+  active?: boolean;
+  href: string;
+  onClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+}
+
 const SidebarItem = ({ item, pageName, setPageName }: any) => {
   const handleClick = () => {
     const updatedPageName =
