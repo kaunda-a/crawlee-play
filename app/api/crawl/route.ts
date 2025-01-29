@@ -1,7 +1,7 @@
-import { runPlaywrightCrawler } from '@/lib/crawlers/playwright';
 import { NextResponse } from 'next/server';
 
 export const runtime = 'edge'
+export const dynamic = 'force-dynamic'
 
 export async function POST(request: Request) {
   try {
@@ -14,11 +14,18 @@ export async function POST(request: Request) {
       );
     }
 
-    const result = await runPlaywrightCrawler(url);
+    // Edge-optimized crawler logic
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+      }
+    });
+    
+    const content = await response.text();
     
     return NextResponse.json({
       success: true,
-      data: result
+      data: { url, content }
     });
 
   } catch (error) {
