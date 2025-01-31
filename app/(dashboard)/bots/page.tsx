@@ -46,7 +46,6 @@ const BotsPage = () => {
     os: 'Windows',
     userAgent: '',
     type: 'bot',
-    category: '',
     fingerprint: {
       userAgent: '',
       hardwareConcurrency: 4,
@@ -85,8 +84,6 @@ const BotsPage = () => {
   const botsPerPage = 9;
   const [botToDelete, setBotToDelete] = useState<Bot | null>(null);
   const [fingerprint, setFingerprint] = useState({});
-  const [botCategories, setBotCategories] = useState<string[]>([]);
-  const [newCategory, setNewCategory] = useState('');
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
  
   const containerRef = useRef<HTMLDivElement>(null);
@@ -96,7 +93,6 @@ const BotsPage = () => {
       fetchBots();
       getPlaywrightDevices().then(setDevices);
       setBrowsers(getPlaywrightBrowsers());
-      fetchBotCategories();
 
       if (containerRef.current) {
         const resizeObserver = new ResizeObserver((entries) => {
@@ -116,7 +112,6 @@ const BotsPage = () => {
       }
     }
   }, []);
-
 
   const getDeviceIcon = (device: string, size: number = 16) => {
     if (device.toLowerCase().includes('iphone') ||
@@ -166,29 +161,12 @@ const BotsPage = () => {
     }
   };
 
-  const fetchBotCategories = async () => {
-    if (typeof window === 'undefined') return;
-    try {
-      const response = await fetch('/api/category');
-      const data = await response.json();
-      setBotCategories(Array.isArray(data) ? data : []);
-    } catch (error) {
-      console.error('Failed to fetch bot categories:', error);
-      toast({
-        title: "Error",
-        description: "Failed to fetch bot categories",
-        variant: "destructive",
-      });
-    }
-  };
-
   const handleSaveBot = async () => {
     if (typeof window === 'undefined') return;
     try {
       const botWithFingerprint = {
         ...newBot,
         fingerprint: FingerprintManager.generateFingerprint(),
-        category: newBot.category,
       };
 
       const response = await fetch('/api/bots', {
@@ -206,7 +184,6 @@ const BotsPage = () => {
           os: 'Windows',
           userAgent: '',
           type: 'bot',
-          category: '',
           fingerprint: {
             userAgent: '',
             hardwareConcurrency: 4,
@@ -331,41 +308,11 @@ const BotsPage = () => {
     });
   };
 
-  const handleAddCategory = async () => {
-    if (typeof window === 'undefined' || !newCategory.trim()) return;
-    if (newCategory.trim()) {
-      try {
-        const response = await fetch('/api/category', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name: newCategory.trim() }),
-        });
-        if (response.ok) {
-          setBotCategories([...botCategories, newCategory.trim()]);
-          setNewCategory('');
-          toast({
-            title: "Success",
-            description: "New category added successfully",
-          });
-        }
-      } catch (error) {
-        console.error('Failed to add new category:', error);
-        toast({
-          title: "Error",
-          description: "Failed to add new category",
-          variant: "destructive",
-        });
-      }
-    }
-  };
-
   const getGridColumns = () => {
     if (containerSize.width < 640) return 1;
     if (containerSize.width < 1024) return 2;
     return 3;
   };
-
-
 
   const loadMoreBots = useCallback(() => {
     if (displayedBots.length < savedBots.length) {
@@ -373,7 +320,6 @@ const BotsPage = () => {
       setDisplayedBots(prevBots => [...prevBots, ...nextBots]);
     }
   }, [savedBots, displayedBots, botsPerPage]);
-  
   
   const { ref, inView } = useInView();
 
@@ -384,9 +330,7 @@ const BotsPage = () => {
   }, [inView, loadMoreBots]);
 
   return (
-     <DefaultLayout>
-      <Breadcrumb pageName="Bots" />
-     
+    <DefaultLayout>
     <div className="container mx-auto p-6" ref={containerRef}>
       <h1 className="text-3xl font-bold mb-6">Bots Management</h1>
       
@@ -449,31 +393,6 @@ const BotsPage = () => {
               value={newBot.userAgent}
               onChange={(e) => setNewBot({ ...newBot, userAgent: e.target.value })}
             />
-             <Input
-                 placeholder="New Category"
-                 value={newCategory}
-                 onChange={(e) => setNewCategory(e.target.value)}
-               />
-              <Button onClick={handleAddCategory}>Add Category</Button>
-
-            <Select
-              value={newBot.category}
-              onValueChange={(value) => setNewBot({ ...newBot, category: value })}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select Category" />
-              </SelectTrigger>
-              <SelectContent>
-              {Object.keys(botCategories).map((category) => (
-                <SelectItem key={category} value={category}>
-                  <div className="flex items-center">
-                    <span className="ml-2">{category}</span>
-                  </div>
-                </SelectItem>
-              ))}
-              </SelectContent>
-            </Select>
-
             <Flex className="flex justify-between items-center mt-4 w-full">
               <Button onClick={handleDeviceRotation}>Rotate Device</Button>
               <div className="w-4" /> {/* Spacer */}
@@ -501,7 +420,6 @@ const BotsPage = () => {
             </p>
             <p className="text-xs">OS: {bot.os}</p>
             <p className="text-xs truncate">UA: {bot.userAgent}</p>
-            <p className="text-xs">Category: {bot.category}</p>
             <div className="flex mt-2">
               <Button onClick={() => handleEditBot(bot)} className="mr-1 text-xs py-1 px-2">Edit</Button>
               <Button onClick={() => handleDeleteBot(bot)} variant="destructive" className="text-xs py-1 px-2">Delete</Button>
@@ -575,21 +493,6 @@ const BotsPage = () => {
                 value={selectedBot.userAgent}
                 onChange={(e) => setSelectedBot({ ...selectedBot, userAgent: e.target.value })}
               />
-              <Select
-                value={selectedBot.category}
-                onValueChange={(value) => setSelectedBot({ ...selectedBot, category: value })}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select Category" />
-                </SelectTrigger>
-                <SelectContent>
-                {Object.keys(botCategories).map((category) => (
-                    <SelectItem key={category} value={category}>
-                      {category}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
             </div>
           )}
           <DialogFooter>
@@ -621,4 +524,3 @@ const BotsPage = () => {
 };
 
 export default BotsPage;
-

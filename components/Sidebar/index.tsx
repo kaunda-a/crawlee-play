@@ -47,7 +47,10 @@ const menuGroups = [
         label: "Automation",
         route: "#",
         children: [{ label: "Automation", route: "/automation" },
+                   { label: "Instances", route: "/instance" },
+                   { label: "Bots", route: "/bots" },
                    { label: "Proxies", route: "/proxies" },
+
         ],
       },
       {

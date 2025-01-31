@@ -13,11 +13,39 @@ export interface Bot {
   args?: string[];
   type: string;
   category: string;
-  fingerprint: BrowserFingerprint;
   browserVersion?: string;
   targetDomain?: string;
   pagesToVisit?: string[];
-
+  fingerprint: {
+    userAgent: string;
+    hardwareConcurrency: number;
+    deviceMemory: number;
+    platform: string;
+    canvas: string;
+    webgl: string;
+    audioContext: string;
+    fonts: string[];
+    plugins: string[];
+    timezone: string;
+    locale: string;
+    colorDepth: number;
+    touchSupport: string[];
+    doNotTrack: boolean | null;
+    webRTC: string;
+    battery: string;
+    cpuClass?: string;
+    vendorSub: string;
+    productSub: string;
+    oscpu: string;
+    hardwareFamily: string;
+    devicePixelRatio: number;
+    pixelRatio: number;
+    webGLVendor: string;
+    webGLRenderer: string;
+    screenResolution: string;
+    availableScreenResolution: string;
+  
+  }
 }
 
 export interface BrowserFingerprint {
@@ -54,3 +82,5 @@ interface BotCategory {
   _id: string;
   name: string;
 }
+
+
