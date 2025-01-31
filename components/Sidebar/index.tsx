@@ -14,7 +14,7 @@ interface SidebarProps {
 
 const menuGroups = [
   {
-    name: "MENU",
+    name: "Platform",
     menuItems: [
       {
         icon: (
@@ -46,7 +46,9 @@ const menuGroups = [
         ),
         label: "Automation",
         route: "#",
-        children: [{ label: "Automation", route: "/automation" }],
+        children: [{ label: "Automation", route: "/automation" },
+                   { label: "Proxies", route: "/proxies" },
+        ],
       },
       {
         icon: (
@@ -64,8 +66,8 @@ const menuGroups = [
             />
           </svg>
         ),
-        label: "Calendar",
-        route: "/calendar",
+        label: "launch bot",
+        route: "/launcher",
       },
     
       {
@@ -88,8 +90,8 @@ const menuGroups = [
             />
           </svg>
         ),
-        label: "Profile",
-        route: "/profile",
+        label: "Browser profile",
+        route: "/browser",
       },
       {
         icon: (
@@ -123,11 +125,13 @@ const menuGroups = [
             />
           </svg>
         ),
-        label: "Forms",
+        label: "Command hub",
         route: "#",
         children: [
-          { label: "Form Elements", route: "/forms/form-elements" },
-          { label: "Form Layout", route: "/forms/form-layout" },
+          { label: "Runaway", route: "/forms/form-elements" },
+          { label: "Matrix Shell", route: "/forms/form-layout" },
+          { label: "Console Vault", route: "/console" },
+          
         ],
       },
       {
@@ -158,8 +162,8 @@ const menuGroups = [
             </defs>
           </svg>
         ),
-        label: "Tables",
-        route: "/tables",
+        label: "Task",
+        route: "/task",
       },
       {
         icon: (

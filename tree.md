@@ -7,6 +7,12 @@
 │   │       └── route.ts
 │   ├── automation/
 │   │   └── page.tsx
+│   ├── crawler/
+│   │   └── page.tsx
+│   ├── browser/
+│   │   └── page.tsx
+│   ├── proxies/
+│   │   └── page.tsx
 │   └── layout.tsx
 ├── lib/
 │   ├── crawlers/
